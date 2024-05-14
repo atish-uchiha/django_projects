@@ -1,0 +1,44 @@
+{% extends "base.html" %} 
+{% block bodycontent %}
+
+<div class="container">
+  <div class="row">
+   <div class="col-8">
+     <h1>Shopping cart</h1>
+     <hr class="divider">
+
+     {% for product in cartproducts %}
+     <div class="row">
+      <!-- display product image -->
+      <div class="col-4">
+       <img src="http://127.0.0.1:8000/admin/product/media/{{product.pid.image}}">
+      </div>
+      <!-- displaying product details -->
+      <div class="col-8">
+       <h2>{{product.pid.name}}</h2>
+       <p>{{product.pid.description}}</p>
+       <p>{{product.pid.price}}</p>
+       <p>0.0</p>
+       <a href="/cart/update/dec/{{product.id}}" class="btn btn-danger">-</a>
+       <input type="text" value="{{product.quantity}}" class="text-center" disabled>
+       <a href="/cart/update/inc/{{product.id}}" class="btn btn-success">+</a>
+       <a href="/cart/delete/{{product.id}}" class="btn btn-danger">Delete</a>
+      </div>
+     </div>
+     <hr class="divider">
+     {% endfor %}
+   </div>
+   <div class="col-4 border mt-5">
+     <h2>Hello,{{user.username|title}}</h2>
+     <hr>
+     <h3>Total Items : {{total_items}}</h3>
+     <h3>Total Price &nbsp;: {{total_price}}</h3>
+     <a href="/order" class="btn btn-primary w-100">Place Order</a>
+   </div>
+  </div>
+</div>
+
+
+
+{% endblock bodycontent %}
+
